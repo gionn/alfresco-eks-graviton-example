@@ -1,0 +1,96 @@
+alfresco-control-center:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+  ingress:
+    hosts:
+      - host: graviton.example.com
+        paths:
+          - path: /control-center
+            pathType: Prefix
+    tls:
+      - hosts:
+          - graviton.example.com
+        secretName: letsencrypt-prod-hydra
+alfresco-digital-workspace:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+  ingress:
+    hosts:
+      - host: graviton.example.com
+        paths:
+          - path: /workspace
+            pathType: Prefix
+    tls:
+      - hosts:
+          - graviton.example.com
+        secretName: letsencrypt-prod-hydra
+alfresco-repository:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+  ingress:
+    hosts:
+      - host: graviton.example.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - graviton.example.com
+        secretName: letsencrypt-prod-hydra
+share:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+  ingress:
+    hosts:
+      - host: graviton.example.com
+        paths:
+          - path: /share
+            pathType: ImplementationSpecific
+    tls:
+      - hosts:
+          - graviton.example.com
+        secretName: letsencrypt-prod-hydra
+alfresco-transform-service:
+  transformrouter:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+  filestore:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+  pdfrenderer:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+  imagemagick:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+  libreoffice:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+  tika:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+  transformmisc:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+
+alfresco-search-enterprise:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+elasticsearch:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+postgresql:
+  primary:
+    nodeSelector:
+      "kubernetes.io/arch": arm64
+activemq:
+  nodeSelector:
+    "kubernetes.io/arch": arm64
+
+global:
+  known_urls: &global_url https://graviton.example.com
+
+dtas:
+  config:
+    config:
+      host: *global_url

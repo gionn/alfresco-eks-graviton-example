@@ -1,0 +1,96 @@
+alfresco-control-center:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+  ingress:
+    hosts:
+      - host: amd64.example.com
+        paths:
+          - path: /control-center
+            pathType: Prefix
+    tls:
+      - hosts:
+          - amd64.example.com
+        secretName: letsencrypt-prod-hydra
+alfresco-digital-workspace:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+  ingress:
+    hosts:
+      - host: amd64.example.com
+        paths:
+          - path: /workspace
+            pathType: Prefix
+    tls:
+      - hosts:
+          - amd64.example.com
+        secretName: letsencrypt-prod-hydra
+alfresco-repository:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+  ingress:
+    hosts:
+      - host: amd64.example.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - amd64.example.com
+        secretName: letsencrypt-prod-hydra
+share:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+  ingress:
+    hosts:
+      - host: amd64.example.com
+        paths:
+          - path: /share
+            pathType: ImplementationSpecific
+    tls:
+      - hosts:
+          - amd64.example.com
+        secretName: letsencrypt-prod-hydra
+alfresco-transform-service:
+  transformrouter:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+  filestore:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+  pdfrenderer:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+  imagemagick:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+  libreoffice:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+  tika:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+  transformmisc:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+
+alfresco-search-enterprise:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+elasticsearch:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+postgresql:
+  primary:
+    nodeSelector:
+      "kubernetes.io/arch": amd64
+activemq:
+  nodeSelector:
+    "kubernetes.io/arch": amd64
+
+global:
+  known_urls: &global_url https://amd64.example.com
+
+dtas:
+  config:
+    config:
+      host: *global_url

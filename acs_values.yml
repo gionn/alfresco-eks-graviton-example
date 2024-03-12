@@ -1,0 +1,70 @@
+alfresco-control-center:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+alfresco-digital-workspace:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+alfresco-repository:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+  persistence:
+    enabled: false
+  configuration:
+    search:
+      flavor: elasticsearch
+share:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+alfresco-transform-service:
+  transformrouter:
+    replicaCount: 1
+  filestore:
+    replicaCount: 1
+    persistence:
+      enabled: false
+  pdfrenderer:
+    replicaCount: 1
+  imagemagick:
+    replicaCount: 1
+  libreoffice:
+    replicaCount: 1
+  tika:
+    replicaCount: 1
+  transformmisc:
+    replicaCount: 1
+
+alfresco-search-enterprise:
+  enabled: true
+elasticsearch:
+  enabled: true
+  persistence:
+    enabled: false
+  tests:
+    enabled: false
+alfresco-search:
+  enabled: false
+alfresco-sync-service:
+  enabled: false
+postgresql:
+  primary:
+    persistence:
+      enabled: false
+activemq:
+  persistence:
+    enabled: false
+postgresql-sync:
+  enabled: false
+
+global:
+  alfrescoRegistryPullSecrets: quay-registry-secret
+
+dtas:
+  enabled: true
+  additionalArgs:
+    - -s
+    - --benchmark
+    - --benchmark-min-rounds=30
